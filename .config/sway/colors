@@ -1,0 +1,8 @@
+set $i3focbo  #665c54
+set $i3focbg  #0d0d0d
+set $i3focfg  #ebdbb2
+set $i3foci   #83a598
+set $i3unfbo  #3c3836
+set $i3unfbg  #000000
+set $i3unffg  #aa9988
+set $i3urgent #cc241d

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+source ~/.profile
+
+args="$*"
+
+/usr/bin/alacritty \
+    $args \
+    -o "colors.primary.background = '$BG'" \
+    -o "colors.primary.foreground = '$FG'" \
+    -o "colors.normal.black       = '$BLACK'" \
+    -o "colors.normal.red         = '$RED'" \
+    -o "colors.normal.green       = '$GREEN'" \
+    -o "colors.normal.yellow      = '$YELLOW'" \
+    -o "colors.normal.blue        = '$BLUE'" \
+    -o "colors.normal.magenta     = '$MAGENTA'" \
+    -o "colors.normal.cyan        = '$CYAN'" \
+    -o "colors.normal.white       = '$WHITE'" \
+    -o "colors.bright.black       = '$BRIGHT_BLACK'" \
+    -o "colors.bright.red         = '$BRIGHT_RED'" \
+    -o "colors.bright.green       = '$BRIGHT_GREEN'" \
+    -o "colors.bright.yellow      = '$BRIGHT_YELLOW'" \
+    -o "colors.bright.blue        = '$BRIGHT_BLUE'" \
+    -o "colors.bright.magenta     = '$BRIGHT_MAGENTA'" \
+    -o "colors.bright.cyan        = '$BRIGHT_CYAN'" \
+    -o "colors.bright.white       = '$BRIGHT_WHITE'"

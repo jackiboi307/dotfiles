@@ -1,0 +1,11 @@
+[Unit]
+Description=Autostart Script
+
+; Wants=network-online.target
+; After=network-online.target
+
+[Service]
+ExecStart=/home/jack/Scripts/autostart.sh
+
+[Install]
+WantedBy=default.target
