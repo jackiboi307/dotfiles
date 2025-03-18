@@ -1,10 +1,12 @@
-# command configurations:
+shopt -s expand_aliases
+
+# Command defaults
 
 alias ls='ls -a --color=auto'
 alias grep='grep --color=auto'
 alias browsh="browsh --startup-url lite.duckduckgo.com/lite"
 
-# shortcuts:
+# Shortcuts
 
 alias cls='clear'
 alias res='reset'
@@ -16,12 +18,13 @@ alias l++='sudo light -A 1'
 alias l-='sudo light -U'
 alias l--='sudo light -U 1'
 
-# "custom" commands:
+# "Custom" commands
 
 alias duck='lynx https://lite.duckduckgo.com/lite'
 alias tree='exa -Ta'
 alias packages='comm -23 <(pacman -Qqett | sort) <(pacman -Qqg base-devel | sort | uniq)'
 alias keepawake='systemd-inhibit --what=handle-lid-switch' # disables sleep on lid close for as long as given command is running
+alias gitdiff='git diff --cached --name-only'
 
 function binview {
     xxd -a $1 | less -N -# 1
@@ -38,21 +41,15 @@ function isrunning {
 
 # alias grim='grim ~/Screenshot.png'
 
-# scripts
+# Scripts
 
 alias catsay='python ~/Programmering/catsay/main.py'
 alias loop='~/Scripts/loop.sh'
 
-# programs
-
-alias msnake='~/Appar/msnake/build/msnake'
-alias st='~/Appar/St/st'
-
-# cargo
-
 alias cargo_format='python ~/Programmering/CargoShort/short.py'
 alias cargo_short='cargo check --message-format json | cargo_format'
 
-# git aliases
+# Programs
 
-alias gitdiff='git diff --cached --name-only'
+alias msnake='~/Appar/msnake/build/msnake'
+alias st='~/Appar/St/st'
