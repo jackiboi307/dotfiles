@@ -1,6 +1,7 @@
 set -a # automatically export all variables
 
 source ~/colors.env
+source ~/commands.sh
 
 # PATH settings:
 

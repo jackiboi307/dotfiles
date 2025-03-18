@@ -1,8 +1,14 @@
 #!/bin/bash
 
-# Automatically start Discord bot
-BOT_DIR='/home/jack/Programmering/Discord/truppbot'
-BOT_CMD=$BOT_DIR/main.py
-BOT_LOG=$BOT_DIR/log
-pkill -f $BOT_CMD
-systemd-inhibit --what=handle-lid-switch python $BOT_CMD >> $BOT_LOG 2>&1 & disown
+# Discord bot
+cd /home/jack/Programmering/Discord/truppbot
+BOT_CMD='python main.py'
+pkill -f "$BOT_CMD"
+systemd-inhibit --what=handle-lid-switch $BOT_CMD >> log 2>&1 & disown
+cd
+
+# Hemsida
+cd /home/jack/Programmering/Kattmys
+# Borde göra 'pkill ...' och '& disown' på egen hand
+start
+cd
