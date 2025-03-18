@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /home/jack/commands.sh
+
 # Discord bot
 cd /home/jack/Programmering/Discord/truppbot
 BOT_CMD='python main.py'
