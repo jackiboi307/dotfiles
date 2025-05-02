@@ -1,0 +1,169 @@
+" let s:fg0 =          "#fbf1c7"
+" let s:fg1 =          "#ebdbb2"
+let s:fg2 =          "#d5c4a1"
+let s:fg3 =          "#bdae93"
+" let s:fg4 =          "#a89984"
+
+let s:white =        "#ebdbb2"
+let s:black =        "#000000"
+let s:dark_gray =    "#1c1c1c"
+let s:light_gray =   "#a89984"
+
+" let s:bg0 =          "#282828"
+" let s:bg0_h =        "#1d2021"
+let s:bg0_s =        "#32302f"
+
+" let s:bg1 =          "#3c3836"
+let s:bg2 =          "#504945"
+" let s:bg3 =          "#665c54"
+let s:bg4 =          "#7c6f64"
+
+let s:bg =   "#000000"
+let s:fg =   "#ebdbb2"
+let s:gray = "#303030"
+
+" Custom
+
+" let s:statusactive =   "$statusactive"
+" let s:statusinactive = "$statusinactive"
+
+let s:tabline =        "#0f0f0f"
+" let s:tab =            "$tab"
+" let s:tabsel =         "$seltab"
+
+" let s:activefg =     "$activefg"
+let s:activebg =     "#303030"
+let s:inactivefg =   "#aa9988"
+let s:inactivebg =   "#1c1c1c"
+
+let s:endofbuffer =  "#928374"
+let s:lineno =       "#928374"
+let s:special =      "#928374"
+
+let s:red =          "#fb4934"
+let s:green =        "#b8bb26"
+let s:yellow =       "#fabd2f"
+let s:blue =         "#83a598"
+let s:magenta =      "#d3869b"
+let s:cyan =         "#8ec07c"
+let s:orange =       "#fe8019"
+
+let s:dark_red =     "#cc241d"
+let s:dark_green =   "#98971a"
+let s:dark_yellow =  "#d79921"
+let s:dark_blue =    "#458588"
+let s:dark_magenta = "#b16286"
+let s:dark_cyan =    "#689d6a"
+let s:dark_orange =  "#d65d0e"
+
+function s:hl(group, attrs)
+    let l:command = "highlight" . " " . a:group
+    for name in keys(a:attrs)
+        let l:command .= " " . name . "=" . a:attrs[name]
+    endfor
+    execute l:command
+endfunction
+
+" Background color
+hi! Normal ctermbg=NONE guibg=NONE
+call s:hl("Normal", { "guibg": s:bg, "guifg": s:fg})
+
+" Change GruvBox colors
+" call s:hl("GruvboxFg0",        { "guifg": s:fg })
+" call s:hl("GruvboxFg1",        { "guifg": s:fg })
+" call s:hl("GruvboxFg2",        { "guifg": s:fg })
+" call s:hl("GruvboxFg3",        { "guifg": s:fg })
+" call s:hl("GruvboxFg4",        { "guifg": s:fg })
+
+" call s:hl("GruvboxGray",       { "guifg": s:gray })
+
+" Should not be used:
+" call s:hl("GruvboxBg0",        { "guifg": "#FF0000" })
+" call s:hl("GruvboxBg1",        { "guifg": "#FF0000" })
+" call s:hl("GruvboxBg2",        { "guifg": "#FF0000" })
+" call s:hl("GruvboxBg3",        { "guifg": "#FF0000" })
+" call s:hl("GruvboxBg4",        { "guifg": "#FF0000" })
+
+" call s:hl("GruvboxRed",        { "guifg": s:red     })
+" call s:hl("GruvboxGreen",      { "guifg": s:green   })
+" call s:hl("GruvboxYellow",     { "guifg": s:yellow  })
+" call s:hl("GruvboxBlue",       { "guifg": s:blue    })
+" call s:hl("GruvboxPurple",     { "guifg": s:magenta })
+" call s:hl("GruvboxAqua",       { "guifg": s:cyan    })
+" call s:hl("GruvboxOrange",     { "guifg": s:orange  })
+
+" call s:hl("GruvboxRedBold",    { "guifg": s:red,     "gui": "bold" })
+" call s:hl("GruvboxGreenBold",  { "guifg": s:green,   "gui": "bold" })
+" call s:hl("GruvboxYellowBold", { "guifg": s:yellow,  "gui": "bold" })
+" call s:hl("GruvboxBlueBold",   { "guifg": s:blue,    "gui": "bold" })
+" call s:hl("GruvboxPurpleBold", { "guifg": s:magenta, "gui": "bold" })
+" call s:hl("GruvboxAquaBold",   { "guifg": s:cyan,    "gui": "bold" })
+" call s:hl("GruvboxOrangeBold", { "guifg": s:orange,  "gui": "bold" })
+
+" Tabline with Gruvbox colors
+" call s:hl("TabLineFill", {"guibg": s:tabline })
+" call s:hl("TabLine",     {"guibg": s:inactivebg, "guifg": s:inactivefg })
+" call s:hl("TabLineSel",  {"guibg": s:activebg,   "guifg": s:fg, "gui": "bold" })
+call s:hl("TabLineFill", {"guibg": "NONE" })
+call s:hl("TabLine",     {"guibg": "NONE", "guifg": s:inactivefg })
+call s:hl("TabLineSel",  {"guibg": "NONE", "guifg": s:fg, "gui": "bold" })
+call s:hl("TabLineSelNum", {"guibg": s:activebg, "guifg": s:fg })
+
+" Statusline with Gruvbox colors
+call s:hl("StatusLine",        {"guifg": s:activebg,   "guibg": s:activebg})
+call s:hl("StatusLineNC",      {"guifg": s:inactivebg, "guibg": s:inactivebg})
+call s:hl("StatusActive",      {"guibg": s:activebg,   "guifg": s:fg})
+call s:hl("StatusActiveTitle", {"guibg": s:activebg,   "guifg": s:fg})
+call s:hl("StatusInactive",    {"guibg": s:inactivebg, "guifg": s:inactivefg})
+" call s:hl("StatusLine",        {"guifg": "NONE", "guibg": s:activebg})
+" call s:hl("StatusLineNC",      {"guifg": "NONE", "guibg": s:inactivebg})
+" call s:hl("StatusActive",      {"guibg": "NONE", "guifg": s:fg})
+" call s:hl("StatusActiveTitle", {"guibg": "NONE", "guifg": s:fg})
+" call s:hl("StatusInactive",    {"guibg": "NONE", "guifg": s:inactivefg})
+
+" call s:hl("StatusLine",     {"guifg": s:bg, "guibg": s:bg})
+" call s:hl("StatusLineNC",   {"guifg": s:bg, "guibg": s:bg})
+
+" Stuff that uses the bg? Gruvbox colors
+" hi link EndOfBuffer LineNr
+" call s:hl("EndOfBuffer", {"guifg": s:endofbuffer})
+" call s:hl("LineNr",      {"guifg": s:lineno})
+" call s:hl("NonText",     {"guifg": s:special})
+" call s:hl("SpecialKey",  {"guifg": s:special})
+" call s:hl("Whitespace",  {"guifg": s:special})
+
+" Git stuff
+" call s:hl("SignColumn",        {"guibg": "none"})
+" call s:hl("GruvboxGreenSign",  {"guibg": "none"})
+" call s:hl("GruvboxRedSign",    {"guibg": "none"})
+" call s:hl("GruvboxBlueSign",   {"guibg": "none"})
+" call s:hl("GruvboxYellowSign", {"guibg": "none"})
+" call s:hl("GruvboxPurpleSign", {"guibg": "none"})
+" call s:hl("GruvboxAquaSign",   {"guibg": "none"})
+" call s:hl("GruvboxOrangeSign", {"guibg": "none"})
+
+call s:hl("GitGutterAddInvisible", {"guibg": "none"})
+call s:hl("GitGutterChangeInvisible", {"guibg": "none"})
+call s:hl("GitGutterDeleteInvisible", {"guibg": "none"})
+call s:hl("GitGutterChangeDeleteInvisible", {"guibg": "none"})
+call s:hl("GitGutterAdd", {"guibg": "none"})
+call s:hl("GitGutterChange", {"guibg": "none"})
+call s:hl("GitGutterDelete", {"guibg": "none"})
+call s:hl("GitGutterChangeDelete", {"guibg": "none"})
+call s:hl("GitGutterAddLine", {"guibg": "none"})
+call s:hl("GitGutterChangeLine", {"guibg": "none"})
+call s:hl("GitGutterDeleteLine", {"guibg": "none"})
+call s:hl("GitGutterChangeDeleteLine", {"guibg": "none"})
+call s:hl("GitGutterAddLineNr", {"guibg": "none"})
+call s:hl("GitGutterChangeLineNr", {"guibg": "none"})
+call s:hl("GitGutterDeleteLineNr", {"guibg": "none"})
+call s:hl("GitGutterChangeDeleteLineNr", {"guibg": "none"})
+call s:hl("GitGutterAddIntraLine", {"guibg": "none"})
+call s:hl("GitGutterDeleteIntraLine", {"guibg": "none"})
+
+call s:hl("VertSplit", {"guibg": "none", "guifg": s:bg4})
+call s:hl("SignColumn", {"guibg": "none"})
+
+" Fixing the retarded vim-crystal/vim-crystal plugin
+" hi link crystalStringDelimiter crystalString
+" call s:hl("crystalSymbolDelimiter", {"guifg": "#FFFFFF"})
