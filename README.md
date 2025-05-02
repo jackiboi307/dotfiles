@@ -10,4 +10,4 @@ I'd also like to make my setup more framebuffer-friendly by tweaking Tmux and Ne
 
 ## Screenshot
 
-<img src="setup_screenshot.png">
+<img src="screenshot.png">
