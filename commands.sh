@@ -1,10 +1,11 @@
-shopt -s expand_aliases
+# shopt -s expand_aliases
 
 # Command defaults
 
 alias ls='ls -a --color=auto'
 alias grep='grep --color=auto'
 alias browsh="browsh --startup-url lite.duckduckgo.com/lite"
+alias du='du -h'
 
 # Shortcuts
 
@@ -24,10 +25,24 @@ alias bt="bluetuith"
 # "Custom" commands
 
 alias duck='lynx https://lite.duckduckgo.com/lite'
-alias tree='exa -Ta'
 alias packages='comm -23 <(pacman -Qqett | sort) <(pacman -Qqg base-devel | sort | uniq)'
 alias keepawake='systemd-inhibit --what=handle-lid-switch' # disables sleep on lid close for as long as given command is running
 alias gitdiff='git diff --cached --name-only'
+alias new='alacritty --working-directory="`pwd`" & disown'
+alias reloadprofile='source ~/.profile; source ~/.bashrc'
+
+EXCLUDED='.git|__pycache__'
+alias tree="exa -Ta -I '$EXCLUDED'"
+
+function sizes {
+    # sizes [directory]
+    du --max-depth 1 $1 | sort -hr
+}
+
+function largest {
+    # largest [directory] [threshold]
+    du -t ${2:-1G} $1 | sort -hr
+}
 
 function binview {
     xxd -a $1 | less -N -# 1

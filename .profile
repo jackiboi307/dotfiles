@@ -1,7 +1,5 @@
 #!/bin/sh
 
-source ~/commands.sh
-
 set -a # automatically export all variables
 
 source ~/colors.env
