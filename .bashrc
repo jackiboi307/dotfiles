@@ -5,7 +5,9 @@
 # if not running interactively, don't do anything
 # [[ $- != *i* ]] && return
 
-PS1='\[\e[94m\]\w \[\e[93m\]>\[\e[0m\] '
+PS1_NORMAL='\[\e[94m\]\w \[\e[93m\]>\[\e[0m\] '
+PS1_LARGE='\[\e[94m\]\w\n\[\e[93m\]>\[\e[0m\] '
+PS1=$PS1_NORMAL
 
 source ~/commands.sh
 

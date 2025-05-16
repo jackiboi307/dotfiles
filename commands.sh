@@ -1,5 +1,7 @@
 # shopt -s expand_aliases
 
+source ~/priv_commands.sh
+
 # Command defaults
 
 alias ls='ls -a --color=auto'
@@ -25,11 +27,15 @@ alias bt="bluetuith"
 # "Custom" commands
 
 alias duck='lynx https://lite.duckduckgo.com/lite'
-alias packages='comm -23 <(pacman -Qqett | sort) <(pacman -Qqg base-devel | sort | uniq)'
+# alias packages='comm -23 <(pacman -Qqett | sort) <(pacman -Qqg base-devel | sort | uniq)'
+alias largestpackages="LC_ALL=C.UTF-8 pacman -Qi | awk '/^Name/{name=\$3} /^Installed Size/{print \$4\$5, name}' | LC_ALL=C.UTF-8 sort -h"
 alias keepawake='systemd-inhibit --what=handle-lid-switch' # disables sleep on lid close for as long as given command is running
 alias gitdiff='git diff --cached --name-only'
 alias new='alacritty --working-directory="`pwd`" & disown'
 alias reloadprofile='source ~/.profile; source ~/.bashrc'
+
+alias ps1n='PS1=$PS1_NORMAL'
+alias ps1l='PS1=$PS1_LARGE'
 
 EXCLUDED='.git|__pycache__'
 alias tree="exa -Ta -I '$EXCLUDED'"
@@ -39,7 +45,7 @@ function sizes {
     du --max-depth 1 $1 | sort -hr
 }
 
-function largest {
+function largestfiles {
     # largest [directory] [threshold]
     du -t ${2:-1G} $1 | sort -hr
 }
