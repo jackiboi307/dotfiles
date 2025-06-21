@@ -64,7 +64,7 @@ x = 0
 y = 0
 
 [window]
-opacity = 0.8
+opacity = 0.92
 # opacity = 1
 
 [window.padding]

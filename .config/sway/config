@@ -222,7 +222,7 @@ bar {
     workspace_min_width 0
 
     colors {
-        background #000000e3
+        background #000000eb
 
         focused_workspace  #333333e3 #000000e0 #dddddd 
         active_workspace   #181818e3 #000000e0 #888888 

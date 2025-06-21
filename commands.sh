@@ -6,8 +6,9 @@ source ~/priv_commands.sh
 
 alias ls='ls -a --color=auto'
 alias grep='grep --color=auto'
-alias browsh="browsh --startup-url lite.duckduckgo.com/lite"
 alias du='du -h'
+alias lynx='lynx --display_charset=utf-8'
+# alias browsh="browsh --startup-url lite.duckduckgo.com/lite"
 
 # Shortcuts
 
@@ -22,7 +23,7 @@ alias l-='sudo light -U'
 alias l--='sudo light -U 1'
 
 alias arduino='arduino-cli'
-alias bt="bluetuith"
+alias bt='bluetuith'
 
 # "Custom" commands
 
@@ -56,6 +57,30 @@ function binview {
 
 function isrunning {
     pkill --signal 0 -f $1 && echo Running!
+}
+
+function flask {
+    python -m flask --app $1 run $2 $3 $4 $5
+}
+
+# ffmpeg commands
+
+function ff_init {
+    # take input and output file arguments
+    infile=$1
+    outfile=$2
+    if [ -z "$outfile" ]; then
+        outfile=$infile
+    fi
+}
+
+# function ff_checkargs {
+    # take all 
+# }
+
+function ffsetwidth {
+    ffinit_ $@
+    ffmpeg -i 
 }
 
 # alias shotgun='shotgun ~/Screenshot.png'

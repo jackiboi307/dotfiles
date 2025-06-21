@@ -42,11 +42,11 @@ transparency = grid
 # Default image scale (optimal/fit/width/height/fill/real)
 scale = fit
 # Keep absolute zoom across images (yes/no)
-keep_zoom = no
+# keep_zoom = no
 # Initial image position
 position = center
 # Fix position of the image on the window surface (yes/no)
-fixed = yes
+# fixed = yes
 # Anti-aliasing mode (none/box/bilinear/bicubic/mks13)
 antialiasing = none
 # Run slideshow at startup (yes/no)
@@ -101,40 +101,40 @@ all = no
 ################################################################################
 [font]
 # Font name
-name = Source Code Pro Regular
+name = Source Code Pro
 # Font size (pt)
 size = 12
 # Font color (RGBA)
 color = #ccccccff
 # Shadow color (RGBA)
-shadow = #000000d0
+shadow = #00000000
 # Background color (RGBA)
-background = #00000000
+background = #000000ff
 
 ################################################################################
 # Image meta info scheme (format, size, EXIF, etc)
 ################################################################################
 [info]
 # Show on startup (yes/no)
-show = no
+show = yes
 # Timeout to hide info (seconds, 0 to always show)
-info_timeout = 5
+info_timeout = 0
 # Timeout to hide status message (seconds)
-status_timeout = 3
+status_timeout = 0
 
 # Display scheme for viewer mode (position = content)
 [info.viewer]
-top_left = +name,+format,+filesize,+imagesize,+exif
-top_right = index
-bottom_left = scale,frame
-bottom_right = status
+top_left = none
+top_right = none
+bottom_left = name
+bottom_right = none
 
 # Display scheme for gallery mode (position = content)
 [info.gallery]
 top_left = none
 top_right = none
-bottom_left = none
-bottom_right = name,status
+bottom_left = name
+bottom_right = none
 
 ################################################################################
 # Viewer mode key binding configuration: key = action [parameters]
@@ -169,8 +169,8 @@ z = zoom fit
 Shift+z = zoom fill
 0 = zoom real
 BackSpace = zoom optimal
-Alt+s = scale
-Alt+z = keep_zoom
+# Alt+s = scale
+# Alt+z = keep_zoom
 bracketleft = rotate_left
 bracketright = rotate_right
 m = flip_vertical
@@ -192,6 +192,8 @@ Shift+ScrollUp = prev_file
 Shift+ScrollDown = next_file
 Alt+ScrollUp = prev_frame
 Alt+ScrollDown = next_frame
+
+p = exec echo "%"
 
 ################################################################################
 # Gallery mode key binding configuration: key = action [parameters]
@@ -220,3 +222,5 @@ ScrollLeft = step_right
 ScrollRight = step_left
 ScrollUp = step_up
 ScrollDown = step_down
+
+p = exec echo "%"
