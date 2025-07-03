@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# set -x
+
 read -p 'Make sure you are in a directory such as ~/Dotfiles.
 Proceed by pressing enter, cancel by pressing Ctrl-C '
 

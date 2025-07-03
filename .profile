@@ -10,4 +10,8 @@ source ~/colors.env
 PATH=~/PATH:$PATH:.
 PYTHONPATH=/home/jack/Programmering/PATH
 
+EDITOR=nvim
+VISUAL=$EDITOR
+SUDO_EDITOR=$EDITOR
+
 set +a
