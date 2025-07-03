@@ -35,9 +35,6 @@ alias new='alacritty --working-directory="`pwd`" & disown'
 alias reloadprofile='source ~/.profile; source ~/.bashrc'
 alias activate='source .venv/bin/activate' # python venv
 
-alias ps1n='PS1=$PS1_NORMAL'
-alias ps1l='PS1=$PS1_LARGE'
-
 EXCLUDED='.git|__pycache__'
 alias tree="exa -Ta -I '$EXCLUDED'"
 
