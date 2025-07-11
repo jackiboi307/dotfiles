@@ -4,6 +4,6 @@ echo -ne '{"version": 1}\n['
 
 while :
 do
-    ~/Lemonbar/run.sh
+    ~/Bar/run.sh
 done
 

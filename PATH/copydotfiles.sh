@@ -21,7 +21,7 @@ ln -f ~/commands.sh
 
 # Recursive links
 cp -lR ~/PATH .
-cp -lR ~/Lemonbar .
+cp -lR ~/Bar .
 
 # .config
 mkdir .config

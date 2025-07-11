@@ -2,7 +2,7 @@
 
 while :
 do
-    python ~/Lemonbar/supercoolbar.py
+    python ~/Bar/supercoolbar.py
     sleep 1
 done
 

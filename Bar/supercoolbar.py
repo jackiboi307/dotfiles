@@ -37,6 +37,7 @@ if 1:
 
     temp = check_output("sensors").decode("ascii", errors="ignore")
     temp = re.search(r"temp1:(.*)", temp).group(1).strip()[1:-1]
+    temp = int(float(temp))
 
     brightness = check_output("light").decode().strip()
     brightness = brightness[:brightness.index(".")]
@@ -60,9 +61,9 @@ if 1:
                 None),
         (charging, green if charging == "+" else red),
         (f"Vol: {volume}", white),
-        (f"Temp: {temp} C", red    if float(temp) > 84.9 else \
-                            orange if float(temp) > 69.9 else \
-                            yellow if float(temp) > 54.9 else green),
+        (f"Temp: {temp}°C", red    if temp >= 85 else \
+                            orange if temp >= 70 else \
+                            yellow if temp >= 55 else green),
         f"Ljus: {brightness}%",
     )
 

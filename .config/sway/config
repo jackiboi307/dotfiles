@@ -217,7 +217,7 @@ exec_always --no-startup-id bash -lic 'swaybg -i ~/Kattbilder/`exa ~/Kattbilder 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    status_command ~/Lemonbar/main.sh
+    status_command ~/Bar/main.sh
     font pango: SourceCodeVF Normal 8
     workspace_min_width 0
 
