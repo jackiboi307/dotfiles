@@ -30,9 +30,9 @@ autocmd BufEnter * silent! lcd %:p:h
 " Tab settings:
 filetype plugin on
 filetype plugin indent on
-set tabstop=4 " show existing tab with 4 spaces width
-set shiftwidth=4 " when indenting with '>', use 4 spaces width
-set expandtab " On pressing tab, insert 4 spaces
+set tabstop=4
+set shiftwidth=4
+set expandtab
 set sw=4 sts=4 et
 
 set laststatus=2
@@ -56,6 +56,14 @@ noremap <S-Tab> :tabprevious<CR>
 " nnoremap <silent> <C-s> :w<CR>
 " inoremap <silent> <C-s> <Esc>:w<CR>a
 
+" nnoremap ! :!
+
+noremap + $
+noremap 0 ^
+noremap = 0
+
+nnoremap J J$
+
 nnoremap <C-CR> :noh<CR>
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
@@ -74,16 +82,23 @@ noremap ( <Cmd>call CharBackward()<CR>
 
 " vmap <Space> <Esc>(lv)h
 
+augroup NetrwMappings
+    autocmd!
+    autocmd FileType netrw nmap <buffer> l <CR>
+    autocmd FileType netrw nmap <buffer> h 8G<CR>2j
+augroup END
+
 """""""""""""""""""" Plugins
 
 if ! empty(globpath(&rtp, 'autoload/plug.vim'))
     call plug#begin('~/.vim/plugged')
         " Dunno
-        Plug 'airblade/vim-rooter'
+        " Plug 'airblade/vim-rooter'
         Plug 'tpope/vim-commentary'
         Plug 'xolox/vim-misc'
-        Plug 'xolox/vim-session'
-        Plug 'kyazdani42/nvim-tree.lua'
+        " Plug 'xolox/vim-session'
+        " Plug 'kevinhwang91/rnvimr'
+        " Plug 'kelly-lin/ranger.nvim'
 
         " Python
         " Plug 'vim-python/python-syntax'
@@ -107,6 +122,15 @@ if ! empty(globpath(&rtp, 'autoload/plug.vim'))
         " Plug 'vim-crystal/vim-crystal'
     call plug#end()
 endif
+
+"""""""""""""""""""" Lua config
+
+" lua require('init')
+
+"""""""""""""""""""" Plugin configuration
+
+" nnoremap K :RnvimrToggle<CR>
+" let g:rnvimr_ranger_cmd = ['ranger', '--cmd=set column_ratios 3,4']
 
 """""""""""""""""""" Various custom stuff
 
@@ -195,21 +219,21 @@ fu! CustomFoldText(string)
     let line = substitute(line, pat, '', '')
 
 "   let line = substitute(line, matchstr(&l:cms,
-"	    \ '^.\{-}\ze%s').'\?\s*'. split(&l:fmr,',')[0].'\s*\d\+', '', '')
+"        \ '^.\{-}\ze%s').'\?\s*'. split(&l:fmr,',')[0].'\s*\d\+', '', '')
 
     if get(g:, 'custom_foldtext_max_width', 0)
-	let w = g:custom_foldtext_max_width - &foldcolumn - (&number ? 8 : 0)
+    let w = g:custom_foldtext_max_width - &foldcolumn - (&number ? 8 : 0)
     else
-	let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
     endif
     let foldSize = 1 + v:foldend - v:foldstart
     let foldSizeStr = " " . foldSize . " lines "
     let foldLevelStr = '+'. v:folddashes
     let lineCount = line("$")
     if exists("*strwdith")
-	let expansionString = repeat(a:string, w - strwidth(foldSizeStr.line.foldLevelStr))
+    let expansionString = repeat(a:string, w - strwidth(foldSizeStr.line.foldLevelStr))
     else
-	let expansionString = repeat(a:string, w - strlen(substitute(foldSizeStr.line.foldLevelStr, ' ', 'x', 'g')))
+    let expansionString = repeat(a:string, w - strlen(substitute(foldSizeStr.line.foldLevelStr, ' ', 'x', 'g')))
     endif
     return line . expansionString . foldSizeStr . foldLevelStr
 endf

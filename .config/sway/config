@@ -22,6 +22,10 @@ input "type:keyboard" {
     xkb_options grp:alt_shift_toggle
 }
 
+input "type:touchpad" {
+    dwt disabled
+}
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -251,15 +255,15 @@ exec_always swaycolors.sh
 # open binds
 bindsym $mod+m exec librewolf
 
-bindsym XF86MonBrightnessUp         exec --no-startup-id sudo light -A 1 && pkill -f ~/Lemonbar/run.sh
-bindsym XF86MonBrightnessDown       exec --no-startup-id sudo light -U 1 && pkill -f ~/Lemonbar/run.sh
-bindsym XF86MonBrightnessUp+Shift   exec --no-startup-id sudo light -A 5 && pkill -f ~/Lemonbar/run.sh
-bindsym XF86MonBrightnessDown+Shift exec --no-startup-id sudo light -U 5 && pkill -f ~/Lemonbar/run.sh
+bindsym XF86MonBrightnessUp         exec --no-startup-id sudo light -A 1 && pkill -f ~/Bar/run.sh
+bindsym XF86MonBrightnessDown       exec --no-startup-id sudo light -U 1 && pkill -f ~/Bar/run.sh
+bindsym XF86MonBrightnessUp+Shift   exec --no-startup-id sudo light -A 5 && pkill -f ~/Bar/run.sh
+bindsym XF86MonBrightnessDown+Shift exec --no-startup-id sudo light -U 5 && pkill -f ~/Bar/run.sh
 
-bindsym XF86AudioRaiseVolume        exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && pkill -f ~/Lemonbar/run.sh
-bindsym XF86AudioLowerVolume        exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && pkill -f ~/Lemonbar/run.sh
-bindsym XF86AudioRaiseVolume+Shift  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -f ~/Lemonbar/run.sh
-bindsym XF86AudioLowerVolume+Shift  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -f ~/Lemonbar/run.sh
+bindsym XF86AudioRaiseVolume        exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && pkill -f ~/Bar/run.sh
+bindsym XF86AudioLowerVolume        exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && pkill -f ~/Bar/run.sh
+bindsym XF86AudioRaiseVolume+Shift  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -f ~/Bar/run.sh
+bindsym XF86AudioLowerVolume+Shift  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -f ~/Bar/run.sh
 
 # screenshot binds
 # bindsym Print      exec shotgun ~/Screenshot.png

@@ -22,7 +22,7 @@ if 1:
     weekday = weeks[now.weekday()]
     day = now.day
     time = f"{now.hour:02d}:{now.minute:02d}"
-    month = months[now.month-1]
+    month = months[now.month]
 
     try:
         network_name = check_output(("iwgetid", "-r")).replace("\n".encode(), "".encode()).decode("utf-8")
