@@ -55,10 +55,6 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Reload Xresources
 # exec_always xrdb ~/.Xresources
 
-# Load configs / scripts / enviroment vars
-# Not sure if it works like this or if it is useless
-exec_always source ~/.profile
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -214,7 +210,7 @@ exec --no-startup-id dunst
 
 # Background
 exec_always --no-startup-id killall swaybg
-exec_always --no-startup-id bash -lic 'swaybg -i ~/Kattbilder/`exa ~/Kattbilder | xargs shuf -n1 -e` -m fill'
+exec_always --no-startup-id bash -lic 'swaybg -i `find ~/Pictures/Wallpapers -type f | xargs shuf -n1 -e` -m fill'
 # exec_always killall feh
 # exec_always bash -c "feh --bg-fill ~/Kattbilder/`exa ~/Kattbilder | xargs shuf -n1 -e`"
 
