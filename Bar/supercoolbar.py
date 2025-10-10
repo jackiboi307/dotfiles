@@ -18,54 +18,76 @@ green  = "#b8bb26"
 # print('{"version": 1}\n[', end="")
 
 if 1:
+    widgets = []
+
+    # TIME
     now = datetime.now()
     weekday = weeks[now.weekday()]
     day = now.day
     time = f"{now.hour:02d}:{now.minute:02d}"
     month = months[now.month]
+    widgets.append(f"{weekday} {day} {month} {time}")
 
+    # NETWORK
     try:
         network_name = check_output(("iwgetid", "-r")).replace("\n".encode(), "".encode()).decode("utf-8")
         if network_name.isspace():
             network_name = "Oansluten"
     except Exception:
         network_name = "Oansluten"
+    widgets.append(f"Nät: {network_name}")
 
-    battery = check_output(("cat", "/sys/class/power_supply/BAT0/capacity")).decode().strip()
-    charging = "+" if check_output(("cat", "/sys/class/power_supply/BAT0/status")).decode().strip() != \
-        "Discharging" else "-"
+    # BATTERY
+    try:
+        battery = check_output(("cat", "/sys/class/power_supply/BAT0/capacity")).decode().strip()
+        charging = "+" if check_output(("cat", "/sys/class/power_supply/BAT0/status")).decode().strip() != \
+            "Discharging" else "-"
+        widgets.append((
+            f"Bat: {battery}% ",
+            red if int(battery) < 30 and charging == "-" else white,
+            None
+        ))
+        widgets.append(charging, green if charging == "+" else red)
+    except:
+        pass
 
-    temp = check_output("sensors").decode("ascii", errors="ignore")
-    temp = re.search(r"temp1:(.*)", temp).group(1).strip()[1:-1]
-    temp = int(float(temp))
+    # TEMP
+    try:
+        temp = check_output("sensors").decode("ascii", errors="ignore")
+        temp = re.search(r"temp1:(.*)", temp).group(1).strip()[1:-1]
+        temp = int(float(temp))
+        widgets.append((f"Temp: {temp}°C",
+            red    if temp >= 85 else \
+            orange if temp >= 70 else \
+            yellow if temp >= 55 else green
+        ))
+    except:
+        pass
 
-    brightness = check_output("light").decode().strip()
-    brightness = brightness[:brightness.index(".")]
+    # BRIGHTNESS
+    try:
+        brightness = check_output("light").decode().strip()
+        brightness = brightness[:brightness.index(".")]
+        widgets.append(f"Ljus: {brightness}%")
+    except:
+        pass
 
-    volume = check_output(("pactl", "get-sink-volume", "@DEFAULT_SINK@")).decode()
-    # volume = volume[volume.index("%")-2:volume.index("%")].lstrip()
-    volume = re.search(r"\d*%", volume).group(0)
+    # VOLUME
+    try:
+        volume = check_output(("pactl", "get-sink-volume", "@DEFAULT_SINK@")).decode()
+        volume = re.search(r"\d*%", volume).group(0)
+        # volume = volume[volume.index("%")-2:volume.index("%")].lstrip()
+        widgets.append((f"Vol: {volume}", white))
+    except Exception as e:
+        pass
 
+    # BLUETOOTH
     try:
         bluetooth = check_output(("bluetoothctl", "info")).decode()
         bluetooth = re.search(r"Name: (.*)", bluetooth).group(1)
     except CalledProcessError:
         bluetooth = "Oansluten"
-
-    widgets = (
-        f"{weekday} {day} {month} {time}",
-        f"Nät: {network_name}",
-        f"Bt: {bluetooth}",
-        (f"Bat: {battery}% ",
-                red if int(battery) < 30 and charging == "-" else white,
-                None),
-        (charging, green if charging == "+" else red),
-        (f"Vol: {volume}", white),
-        (f"Temp: {temp}°C", red    if temp >= 85 else \
-                            orange if temp >= 70 else \
-                            yellow if temp >= 55 else green),
-        f"Ljus: {brightness}%",
-    )
+    widgets.append(f"Bt: {bluetooth}")
 
     out = []
 
