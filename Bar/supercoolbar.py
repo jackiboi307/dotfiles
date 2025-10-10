@@ -47,7 +47,7 @@ if 1:
             red if int(battery) < 30 and charging == "-" else white,
             None
         ))
-        widgets.append(charging, green if charging == "+" else red)
+        widgets.append((charging, green if charging == "+" else red))
     except:
         pass
 
