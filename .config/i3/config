@@ -1,0 +1,19 @@
+include ../sway/base
+
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your Xorg session.' -B 'Yes, exit i3' 'i3-msg exit'
+
+exec_always killall feh
+exec_always bash -c "feh --bg-fill `find ~/Pictures/Wallpapers -type f | xargs shuf -n1 -e`"
+
+bindsym Print      exec shotgun ~/Screenshot.png
+bindsym Print+Ctrl exec shotgun -i `xdotool getwindowfocus` ~/Screenshot.png
+bindsym Print+$mod exec ~/PATH/shotgunarea.sh
+
+exec_always bash -c "killall picom; picom"
+
+bindsym $mod+F9 XF86AudioPlay
+
+# lemonbar
+# exec_always --no-startup-id ~/Lemonbar/main.sh "#000000" "#ebdbb2"
+# exec python ~/Lemonbar/main.py | lemonbar -p
