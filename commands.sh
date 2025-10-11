@@ -27,6 +27,7 @@ alias keepawake='systemd-inhibit --what=handle-lid-switch' # disables sleep on l
 alias new='alacritty --working-directory="`pwd`" & disown'
 alias reloadprofile='source ~/.profile; source ~/.bashrc'
 alias activate='source .venv/bin/activate' # python venv
+alias scp='rsync -av -e ssh' # fake scp
 
 EXCLUDED='.git|__pycache__'
 alias tree="exa -Ta -I '$EXCLUDED'"
@@ -83,16 +84,12 @@ function arun {
     amonitor
 }
 
-# Scripts
-
-alias catsay='python ~/Programmering/catsay/catsay.py'
-alias loop='~/Scripts/loop.sh'
-
-# alias cargo_format='python ~/Programmering/CargoShort/short.py'
-# alias cargo_short='cargo check --message-format json | cargo_format'
-alias cargo_short='cargo check --message-format json | python ~/Programmering/CargoShort/short.py'
-
 # Programs
 
 alias msnake='~/Appar/msnake/build/msnake'
 alias st='~/Appar/St/st'
+alias catsay='python ~/Programmering/catsay/catsay.py'
+
+# alias cargo_format='python ~/Programmering/CargoShort/short.py'
+# alias cargo_short='cargo check --message-format json | cargo_format'
+alias cargo_short='cargo check --message-format json | python ~/Programmering/CargoShort/short.py'
