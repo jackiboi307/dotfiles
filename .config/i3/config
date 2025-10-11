@@ -3,17 +3,34 @@ include ../sway/base
 bindsym Mod4+Shift+r restart
 bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your Xorg session.' -B 'Yes, exit i3' 'i3-msg exit'
 
-exec_always killall feh
-exec_always bash -c "feh --bg-fill `find ~/Pictures/Wallpapers -type f | xargs shuf -n1 -e`"
+exec_always bash -c "killall feh; feh --bg-fill `find ~/Pictures/Wallpapers -type f | xargs shuf -n1 -e`"
+exec_always bash -c "killall picom; picom"
+exec_always bash -c "killall xrdb; ~/PATH/dynamicxresources.sh | xrdb"
 
 bindsym Print      exec shotgun ~/Screenshot.png
 bindsym Ctrl+Print exec shotgun -i `xdotool getwindowfocus` ~/Screenshot.png
 bindsym Mod4+Print exec ~/PATH/shotgunarea.sh
-
-exec_always bash -c "killall picom; picom"
 
 bindsym Mod4+F9 XF86AudioPlay
 
 # lemonbar
 # exec_always --no-startup-id ~/Lemonbar/main.sh "#000000" "#ebdbb2"
 # exec python ~/Lemonbar/main.py | lemonbar -p
+
+set_from_resource $focbo focbo #ffffff
+set_from_resource $focbg focbg #ffffff
+set_from_resource $focfg focfg #ffffff
+set_from_resource $foci foci #ffffff
+set_from_resource $unfbo unfbo #ffffff
+set_from_resource $unfbg unfbg #ffffff
+set_from_resource $unffg unffg #ffffff
+set_from_resource $urgent urgent #ffffff
+
+# class                 border    backgr.   text      indica.   child_border
+client.focused          $focbo    $focbg    $focfg    $foci     $focbo
+client.focused_inactive $unfbo    $unfbg    $unffg    $unfbo    $unfbo
+client.unfocused        $unfbo    $unfbg    $unffg    $unfbo    $unfbo
+client.urgent           $urgent   $focbg    $urgent   $urgent   $urgent
+
+client.placeholder      #000000   #f00000   #ffffff   #000000   #000000 
+client.background       #ff0000 

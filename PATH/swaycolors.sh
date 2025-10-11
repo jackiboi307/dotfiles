@@ -1,24 +1,6 @@
 #!/bin/bash
 
-source ~/.profile
-
-# Focused windows
-focbo=$FG2
-focbg=$BG1
-focfg=$FG
-foci=$BRIGHT_BLUE
-
-# Unfocused windows
-# unfbo='#3c3836'
-unfbo=$BG2
-unfbg=$BG
-unffg=$FG1
-
-# Urgent windows
-urgent=$RED
-# urgent='#cc241d'
-
-# Sway:
+source ~/PATH/colorconfig.env
 
 #       class                   border    backgr.   text      indica.   child_border
 swaymsg client.focused          $focbo    $focbg    $focfg    $foci     $focbo
