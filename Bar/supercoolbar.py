@@ -1,14 +1,28 @@
 from time import sleep
 from datetime import datetime
 from subprocess import check_output, CalledProcessError
+from traceback import format_exception
 import json
 import re
+import os
+
+LOG_FILE = os.path.expanduser("~/Bar/log")
+DEBUG = False
+
+def handle_exc(exc):
+    if DEBUG:
+        try:
+            with open(LOG_FILE, "a") as file:
+                file.write("".join(format_exception(exc)) + "\n")
+        except:
+            pass
 
 weeks = ("Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag")
-months = ("Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "Oktober", "September", "November", "December")
+months = ("Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December")
 
 sep = "   "
 
+# TODO load from colors.env
 white  = "#eeeeee"
 red    = "#cc241d"
 orange = "#fe8019"
@@ -16,6 +30,9 @@ yellow = "#fabd2f"
 green  = "#b8bb26"
 
 # print('{"version": 1}\n[', end="")
+
+with open(LOG_FILE, "w") as file:
+    file.truncate()
 
 if 1:
     widgets = []
@@ -25,7 +42,7 @@ if 1:
     weekday = weeks[now.weekday()]
     day = now.day
     time = f"{now.hour:02d}:{now.minute:02d}"
-    month = months[now.month]
+    month = months[now.month-1]
     widgets.append(f"{weekday} {day} {month} {time}")
 
     # NETWORK
@@ -33,8 +50,9 @@ if 1:
         network_name = check_output(("iwgetid", "-r")).replace("\n".encode(), "".encode()).decode("utf-8")
         if network_name.isspace():
             network_name = "Oansluten"
-    except Exception:
+    except Exception as e:
         network_name = "Oansluten"
+        handle_exc(e)
     widgets.append(f"Nät: {network_name}")
 
     # BATTERY
@@ -48,29 +66,33 @@ if 1:
             None
         ))
         widgets.append((charging, green if charging == "+" else red))
-    except:
-        pass
+    except Exception as e:
+        handle_exc(e)
 
     # TEMP
     try:
-        temp = check_output("sensors").decode("ascii", errors="ignore")
-        temp = re.search(r"temp1:(.*)", temp).group(1).strip()[1:-1]
-        temp = int(float(temp))
+        sensors = check_output("sensors").decode("ascii", errors="ignore")
+        try:
+            temp = re.search(r"temp1:(.*)", sensors).group(1).strip()[1:-1]
+            temp = int(float(temp))
+        except:
+            temp = re.search(r"Tctl:(.*)", sensors).group(1).strip()[1:-1]
+            temp = int(float(temp))
         widgets.append((f"Temp: {temp}°C",
             red    if temp >= 85 else \
             orange if temp >= 70 else \
             yellow if temp >= 55 else green
         ))
-    except:
-        pass
+    except Exception as e:
+        handle_exc(e)
 
     # BRIGHTNESS
     try:
         brightness = check_output("light").decode().strip()
         brightness = brightness[:brightness.index(".")]
         widgets.append(f"Ljus: {brightness}%")
-    except:
-        pass
+    except Exception as e:
+        handle_exc(e)
 
     # VOLUME
     try:
@@ -79,7 +101,7 @@ if 1:
         # volume = volume[volume.index("%")-2:volume.index("%")].lstrip()
         widgets.append((f"Vol: {volume}", white))
     except Exception as e:
-        pass
+        handle_exc(e)
 
     # BLUETOOTH
     try:
