@@ -1,5 +1,7 @@
 include base
 
+set $mod Mod4
+
 input "type:keyboard" {
     xkb_layout se
     xkb_variant ,nodeadkeys
