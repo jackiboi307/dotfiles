@@ -8,6 +8,7 @@ import os
 
 LOG_FILE = os.path.expanduser("~/Bar/log")
 DEBUG = False
+TIMEOUT = 1
 
 def handle_exc(exc):
     if DEBUG:
@@ -47,7 +48,7 @@ if 1:
 
     # NETWORK
     try:
-        network_name = check_output(("iwgetid", "-r")).replace("\n".encode(), "".encode()).decode("utf-8")
+        network_name = check_output(("iwgetid", "-r"), timeout=TIMEOUT).replace("\n".encode(), "".encode()).decode("utf-8")
         if network_name.isspace():
             network_name = "Oansluten"
     except Exception as e:
@@ -57,8 +58,8 @@ if 1:
 
     # BATTERY
     try:
-        battery = check_output(("cat", "/sys/class/power_supply/BAT0/capacity")).decode().strip()
-        charging = "+" if check_output(("cat", "/sys/class/power_supply/BAT0/status")).decode().strip() != \
+        battery = check_output(("cat", "/sys/class/power_supply/BAT0/capacity"), timeout=TIMEOUT).decode().strip()
+        charging = "+" if check_output(("cat", "/sys/class/power_supply/BAT0/status"), timeout=TIMEOUT).decode().strip() != \
             "Discharging" else "-"
         widgets.append((
             f"Bat: {battery}% ",
@@ -71,7 +72,7 @@ if 1:
 
     # TEMP
     try:
-        sensors = check_output("sensors").decode("ascii", errors="ignore")
+        sensors = check_output("sensors", timeout=TIMEOUT).decode("ascii", errors="ignore")
         try:
             temp = re.search(r"temp1:(.*)", sensors).group(1).strip()[1:-1]
             temp = int(float(temp))
@@ -88,7 +89,7 @@ if 1:
 
     # BRIGHTNESS
     try:
-        brightness = check_output("light").decode().strip()
+        brightness = check_output("light", timeout=TIMEOUT).decode().strip()
         brightness = brightness[:brightness.index(".")]
         widgets.append(f"Ljus: {brightness}%")
     except Exception as e:
@@ -96,7 +97,7 @@ if 1:
 
     # VOLUME
     try:
-        volume = check_output(("pactl", "get-sink-volume", "@DEFAULT_SINK@")).decode()
+        volume = check_output(("pactl", "get-sink-volume", "@DEFAULT_SINK@"), timeout=TIMEOUT).decode()
         volume = re.search(r"\d*%", volume).group(0)
         # volume = volume[volume.index("%")-2:volume.index("%")].lstrip()
         widgets.append((f"Vol: {volume}", white))
@@ -105,9 +106,10 @@ if 1:
 
     # BLUETOOTH
     try:
-        bluetooth = check_output(("bluetoothctl", "info")).decode()
+        bluetooth = check_output(("bluetoothctl", "info"), timeout=TIMEOUT).decode()
         bluetooth = re.search(r"Name: (.*)", bluetooth).group(1)
-    except CalledProcessError:
+    except Exception as e:
+        handle_exc(e)
         bluetooth = "Oansluten"
     widgets.append(f"Bt: {bluetooth}")
 
