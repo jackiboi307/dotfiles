@@ -22,12 +22,13 @@ months = ("Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "August
 
 sep = "   "
 
-# TODO load from colors.env
-white  = "#eeeeee"
-red    = "#cc241d"
+os.system("source ~/colors.env")
+white  = os.environ["WHITE"]
+red    = os.environ["RED"]
+# orange = os.environ["ORANGE"]
 orange = "#fe8019"
-yellow = "#fabd2f"
-green  = "#b8bb26"
+yellow = os.environ["YELLOW"]
+green  = os.environ["GREEN"]
 
 # print('{"version": 1}\n[', end="")
 
