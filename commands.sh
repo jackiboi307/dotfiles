@@ -27,7 +27,8 @@ alias keepawake='systemd-inhibit --what=handle-lid-switch' # disables sleep on l
 alias new='alacritty --working-directory="`pwd`" & disown'
 alias reloadprofile='source ~/.profile; source ~/.bashrc'
 alias activate='source .venv/bin/activate' # python venv
-# alias scp='rsync -av -e ssh' # fake scp
+
+alias startx='read -p "Är du säker? " && startx'
 
 EXCLUDED='.git|__pycache__'
 alias tree="exa -Ta -I '$EXCLUDED'"

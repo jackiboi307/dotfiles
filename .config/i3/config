@@ -4,8 +4,10 @@ bindsym Mod4+Shift+r restart
 bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your Xorg session.' -B 'Yes, exit i3' 'i3-msg exit'
 
 exec_always bash -c "killall feh; feh --bg-fill `find ~/Pictures/Wallpapers -type f | xargs shuf -n1 -e`"
-exec_always bash -c "killall picom; picom"
 exec_always bash -c "killall xrdb; ~/PATH/dynamicxresources.sh | xrdb"
+# exec_always bash -c "killall fastcompmgr; fastcompmgr"
+
+exec bach -c xrandr --output HDMI-1 --mode 1920x1080 --rate 165.00
 
 bindsym Print      exec shotgun ~/Screenshot.png
 bindsym Ctrl+Print exec shotgun -i `xdotool getwindowfocus` ~/Screenshot.png
@@ -32,5 +34,5 @@ client.focused_inactive $unfbo    $unfbg    $unffg    $unfbo    $unfbo
 client.unfocused        $unfbo    $unfbg    $unffg    $unfbo    $unfbo
 client.urgent           $urgent   $focbg    $urgent   $urgent   $urgent
 
-client.placeholder      #000000   #f00000   #ffffff   #000000   #000000 
+client.placeholder      #000000   #000000   #ffffff   #000000   #000000 
 client.background       #ff0000 

@@ -212,7 +212,7 @@ gaps top 0
 gaps bottom 0
 gaps horizontal 0
 gaps inner 0
-# gaps inner 3
+# gaps inner 6
 
 default_border pixel 1
 # default_border pixel 2

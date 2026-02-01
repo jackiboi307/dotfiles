@@ -3,6 +3,7 @@
 set -a # automatically export all variables
 
 source ~/colors.env
+# source ~/.bashrc
 
 # PATH settings:
 

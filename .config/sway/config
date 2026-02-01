@@ -1,5 +1,9 @@
 include base
 
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_CURRENT_DESKTOP=sway
+
 set $mod Mod4
 
 input "type:keyboard" {
@@ -11,6 +15,12 @@ input "type:keyboard" {
 input "type:touchpad" {
     dwt disabled
 }
+
+input "type:pointer" {
+    accel_profile flat
+}
+
+output * mode 1920x1080@165.000Hz
 
 bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit Sway? This will end your Wayland session.' -B 'Yes, exit Sway' 'swaymsg exit'"
 

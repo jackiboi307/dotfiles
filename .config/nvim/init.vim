@@ -47,8 +47,11 @@ hi! Normal guibg=NONE ctermbg=NONE
 
 tnoremap <Esc> <C-\><C-n>
 nnoremap Q @q
+nnoremap <C-i> i<Ins>
+
 noremap <Tab> :tabnext<CR>
 noremap <S-Tab> :tabprevious<CR>
+noremap TT :tabedit<CR>
 
 " nnoremap <F5> :vsplit <bar> :term python ~/Programmering/vim-run-py.py % <CR> a
 " inoremap <silent> <F5> <Esc> :execute ':vsplit <bar> :term python "~/Programmering/vim-run-py.py %"' <bar> :startinsert <CR> a
@@ -63,6 +66,8 @@ noremap 0 ^
 noremap = 0
 
 nnoremap J J$
+
+vnoremap za zf<Esc>
 
 nnoremap <C-CR> :noh<CR>
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
@@ -118,8 +123,9 @@ if ! empty(globpath(&rtp, 'autoload/plug.vim'))
         " Plug 'neoclide/coc.nvim', {'branch': 'release'}
         " Plug 'dense-analysis/ale'
         " Plug 'mhinz/vim-startify'
-        
         " Plug 'vim-crystal/vim-crystal'
+
+        Plug 'kevinhwang91/rnvimr'
     call plug#end()
 endif
 
@@ -129,8 +135,10 @@ endif
 
 """""""""""""""""""" Plugin configuration
 
-" nnoremap K :RnvimrToggle<CR>
-" let g:rnvimr_ranger_cmd = ['ranger', '--cmd=set column_ratios 3,4']
+nnoremap <silent> K :RnvimrToggle<CR>
+let g:rnvimr_ranger_cmd = ['ranger', '--cmd=set column_ratios 3,4']
+let g:rnvimr_enable_ex = 1
+let g:rnvimr_enable_picker = 1
 
 """""""""""""""""""" Various custom stuff
 

@@ -49,10 +49,6 @@ position = center
 # fixed = yes
 # Anti-aliasing mode (none/box/bilinear/bicubic/mks13)
 antialiasing = none
-# Run slideshow at startup (yes/no)
-slideshow = no
-# Slideshow image display time (seconds)
-slideshow_time = 3
 # Number of previously viewed images to store in cache
 history = 1
 # Number of preloaded images (read ahead)
@@ -89,8 +85,6 @@ shadow = #000000ff
 [list]
 # Default order (none/alpha/reverse/random)
 order = alpha
-# Looping list of images (yes/no)
-loop = yes
 # Read directories recursively (yes/no)
 recursive = no
 # Open all files in the directory of the specified file (yes/no)
@@ -152,7 +146,6 @@ d = next_dir
 Shift+o = prev_frame
 o = next_frame
 c = skip_file
-Shift+s = slideshow
 s = animation
 f = fullscreen
 Return = mode

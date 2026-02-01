@@ -11,6 +11,7 @@ def cmd(command):
 
 simple = (
     (".bashrc", "~"),
+    (".zshrc", "~"),
     (".profile", "~"),
     ("colors.env", "~"),
     ("commands.sh", "~"),

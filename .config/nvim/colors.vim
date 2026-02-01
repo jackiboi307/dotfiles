@@ -55,3 +55,5 @@ call s:hl("GitGutterDeleteIntraLine",       {"guibg": "none"})
 
 call s:hl("VertSplit",  {"guibg": "none", "guifg": s:inactivefg})
 call s:hl("SignColumn", {"guibg": "none"})
+
+call s:hl("Folded", {"guibg": "none"})
