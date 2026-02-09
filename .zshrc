@@ -13,10 +13,13 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-PS1="%F{12}%~%f%F{11} > %f"
+source ~/commands.sh
 
-# Copied from /etc/inputrc and modified
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+setopt interactivecomments
+PS1=$'%{\e[94m%}%~ %{\e[93m%}>%{\e[0m%} '
+
+# based on /etc/inputrc
 bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 bindkey "\e[1~" beginning-of-line
@@ -32,3 +35,12 @@ bindkey "\e\e[C" forward-word
 bindkey "\e\e[D" backward-word
 bindkey "\e[1;5C" forward-word
 bindkey "\e[1;5D" backward-word
+bindkey '^[[Z' reverse-menu-complete
+
+# https://unix.stackexchange.com/questions/313806/zsh-make-altbackspace-stop-at-non-alphanumeric-characters
+my-backward-delete-word () {
+    local WORDCHARS='~!#$%^&*(){}[]<>?+;'
+    zle backward-delete-word
+}
+zle -N my-backward-delete-word
+bindkey '^H' my-backward-delete-word
